@@ -1,9 +1,47 @@
-import ProfileList from './components/ProfileList'
+import ProfileList from './components/ProfileList';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router'
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [profile, setProfile] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] =useState([]);
+
+  useEffect(() => {
+    axios.get('https://api.hatchways.io/assessment/students').then((response) => {
+      setProfile(response.data.students);
+      console.log(response.data.students);
+    }).catch(e => {
+      console.log('error:', e)
+    })
+  }, []);
+
+  const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if (searchTerm !== "") {
+      const newProfileList = profile.filter((profiles) => {
+        return Object.values(profiles)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(newProfileList);
+    }
+    else {
+      setSearchResults(profile)
+    }
+  };
+
   return (
     <main>
-      <ProfileList></ProfileList>
+      <ProfileList
+      key={profile.id} 
+      // if search is empty then pass profile, else pass search results
+      profile={searchTerm.length < 1 ? profile : searchResults} 
+      term={searchTerm}
+      searchKeyword={searchHandler}
+      />
     </main>
   );
 }
