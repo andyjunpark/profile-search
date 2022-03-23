@@ -27,29 +27,36 @@ export default function ProfileList(props) {
   // populate profiles
   const profileList = profile.map(profiles => {
     return (
-      <div key={profiles.id}>
-        <img src={profiles.pic} alt="profile"/>
-        <h1>{profiles.firstName.toUpperCase()} {profiles.lastName.toUpperCase()}</h1>
-        <h2>{profiles.email}</h2>
-        <h2>{profiles.company}</h2>
-        <h2>{profiles.skill}</h2>
-        <h2>{getAverageGrades(profiles.grades)}</h2>
-        <ul>
-          {
-            profiles.grades.map(grade => {
-              return (
-                <li>{grade}</li>
-              )
-            })
-          }
-        </ul>
+      <div className="profile">
+        <img 
+          src={profiles.pic} 
+          alt="profile" 
+        />
+        <div key={profiles.id}>
+          <h1>{profiles.firstName.toUpperCase()} {profiles.lastName.toUpperCase()}</h1>
+          <ul>
+            <li>{profiles.email}</li>
+            <li>{profiles.company}</li>
+            <li>{profiles.skill}</li>
+            <li>{getAverageGrades(profiles.grades)}%</li>
+          </ul>
+          <ul>
+            {
+              profiles.grades.map((grade, index) => {
+                return (
+                  <li>Test {index+1}: &nbsp; &nbsp; {grade}%</li>
+                )
+              })
+            }
+          </ul>
+        </div>
       </div>
     )
   })
   
   return (
-    <>
-      <div>
+    <div className="wrapper">
+      <div className="search-bar">
         <input 
           ref={inputEl}
           type="text" 
@@ -60,13 +67,15 @@ export default function ProfileList(props) {
         >
         </input>
       </div>
-      <div>
-        {
-          profileList.length > 0
-            ? profileList
-            : "No Profiles available"
-        }
+      <div className="profile-container">
+        <div className="profile-list">
+          {
+            profileList.length > 0
+              ? profileList
+              : "No Profiles available"
+          }
+        </div>
       </div>
-    </>
+    </div>
   );
 }
