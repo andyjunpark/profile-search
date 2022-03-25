@@ -25,7 +25,7 @@ export default function ProfileList(props) {
   const getAverageGrades = (grades) => {
     let sum = 0;
     for (let i = 0; i < grades.length; i++) {
-      sum += parseInt( grades[i], 10);
+      sum += parseInt( grades[i], 10 );
     }
     return sum/grades.length
   }
@@ -133,16 +133,9 @@ export default function ProfileList(props) {
         <input 
           ref={inputEl}
           type="text" 
-          placeholder="Search by name" 
+          placeholder="Search by name or tag" 
           value={term} 
           onChange={getSearchTerm}
-        >
-        </input>
-      </div>
-      <div className="search-tag">
-        <input 
-          type="text" 
-          placeholder="Search by tag" 
         >
         </input>
       </div>

@@ -44,6 +44,7 @@ function App() {
       // if search is empty then pass profile, else pass search results
       profile={searchTerm.length < 1 ? profile : searchResults} 
       term={searchTerm}
+      tag={searchTerm}
       searchKeyword={searchHandler}
       />
     </main>
