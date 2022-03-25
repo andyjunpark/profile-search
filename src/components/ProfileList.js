@@ -4,7 +4,14 @@ import { FiPlus, FiMinus } from 'react-icons/fi'
 import "./ProfileList.css";
 
 export default function ProfileList(props) {
+  // use props
+  const term = props.searchTerm;
+  const profile = props.profile;
+
+  // use state
+  const [studentData, setStudentData] = useState([profile]);
   const [clicked, setClicked] = useState(false);
+  const [tag, setTag] = useState("");
   const inputEl = useRef("");
 
   const toggle = index => {
@@ -30,9 +37,23 @@ export default function ProfileList(props) {
     // console.log(inputEl.current.value);
   }
 
-  // use props
-  const profile = props.profile;
-  const term = props.searchTerm;
+  // add and save tags to student data
+  function saveTag(index) {
+    const createTagForStudent = (student, tag) => {
+      student[index].tags.push(tag);
+  
+      const indexOfStudent = studentData.findIndex((x) => x.id === student.id);
+      let newProfile = [
+        ...studentData.slice(0, indexOfStudent),
+        student,
+        ...studentData.slice(indexOfStudent + 1),
+      ];
+      setStudentData(newProfile);
+    };
+
+    createTagForStudent(profile, tag);
+  }
+
 
   // populate profiles
   const profileList = profile.map((profiles, index) => {
@@ -61,6 +82,34 @@ export default function ProfileList(props) {
                 : null
             }
           </ul>
+          <div className="tags-input">
+            <ul>
+            {
+              profile[index].tags.map((tag, index) => {
+                return (
+                  <li key={index}>
+                    <span>{tag}</span>
+                  </li>
+                )
+              })
+            }
+            </ul>
+            <input
+              onChange={(event) => {
+                setTag(event.target.value);
+              }}
+              onKeyUp={(event) => {
+                if (event.key === "Enter") {
+                  saveTag(index);
+                  event.target.value = "";
+                }
+              }}
+              type="text"
+              placeholder="Add a tag"
+              className="tagAdder"
+            >
+            </input>
+          </div>
         </div>
         <div className="icons" onClick={() => toggle(index)} key={index}>
           <span>
@@ -87,6 +136,13 @@ export default function ProfileList(props) {
           placeholder="Search by name" 
           value={term} 
           onChange={getSearchTerm}
+        >
+        </input>
+      </div>
+      <div className="search-tag">
+        <input 
+          type="text" 
+          placeholder="Search by tag" 
         >
         </input>
       </div>

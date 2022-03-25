@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;700&display=swap');
 
+/* Global */
 * {
   font-family: 'Raleway', sans-serif;
 }
@@ -7,6 +8,7 @@ ul {
   list-style: none;
 }
 
+/* Main wrapper */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -17,24 +19,67 @@ ul {
   background-color: rgba(88, 88, 88, 0.123);
 }
 
+/* Search Bar */
 .search-bar input {
-  margin-top:10vh;
-  overflow:none;
+  margin-top: 5vh;
+  overflow: none;
   outline: none;
   border: none;
-  border-bottom:1px solid rgba(128, 128, 128, 0.24);
-  border-radius:5px 5px 0 0;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+  border-radius: 5px 5px 0 0;
   width: 70vw;
-  padding:1.41vw;
+  padding: 1.41vw;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .search-bar input[type="text"] {
-  font-size:20px;
+  font-size: 20px;
 }
 
+.search-tag input {
+  overflow: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+  width: 70vw;
+  padding: 1.41vw;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.search-tag input[type="text"] {
+  font-size: 20px
+}
+
+.tags-input ul li {
+  float: left;
+}
+
+.tags-input span {
+  background-color: rgba(128, 128, 128, 0.247);
+  border: none;
+  border-radius:5px;
+  color: black;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left:10px;
+}
+
+.tags-input input{
+  overflow: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+  width: 10vw;
+  padding:10px;
+  margin:5% 5% 5% 12%;
+}
+
+/* Profile */
 .profile {
-  display:flex;
+  display: flex;
   justify-content: row;
   align-items: flex-start;
   background: #fff;
@@ -44,25 +89,26 @@ ul {
 .profile-container {
   border: 0 0.5px 0.5px 0.5px solid grey; 
   width: 72.81vw;
-  height: 70vh;
-  overflow:auto;
-  border-radius:0 0 5px 5px;
+  height: 75vh;
+  overflow: auto;
+  border-radius: 0 0 5px 5px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   
 }
 
 .profile img {
-  border-radius:50%;
+  border-radius: 50%;
   border: 0.5px solid;
   width: 15vh;
   height: 15vh;
   margin: 3%;
 }
 
+/* Icons */
 .icons {
-  color:grey;
+  color: grey;
   margin: 20px 20px 20px auto;
-  overflow:none;
+  overflow: none;
 }
 
 .icons:hover {

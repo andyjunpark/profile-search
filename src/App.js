@@ -8,8 +8,12 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] =useState([]);
 
+  
   useEffect(() => {
     axios.get('https://api.hatchways.io/assessment/students').then((response) => {
+      response.data.students.forEach(student => {
+        student.tags = [];
+      })
       setProfile(response.data.students);
       console.log(response.data.students);
     }).catch(e => {
