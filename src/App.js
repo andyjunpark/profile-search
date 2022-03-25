@@ -1,5 +1,4 @@
 import ProfileList from './components/ProfileList';
-// import { BrowserRouter as Router, Route, Routes } from 'react-router'
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -44,7 +43,7 @@ function App() {
       // if search is empty then pass profile, else pass search results
       profile={searchTerm.length < 1 ? profile : searchResults} 
       term={searchTerm}
-      tag={searchTerm}
+      tag={searchTag}
       searchKeyword={searchHandler}
       />
     </main>
